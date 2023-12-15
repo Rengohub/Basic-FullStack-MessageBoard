@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Final Exam</title>
+		<link href="/static/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="/">HOME</a></li>
+				{% if current_user.is_authenticated %}
+					<li><a href="/addPost">ADD YOUR POST</a></li>
+					<li><a href="/update">UPDATE PASSWORD</a></li>
+					<li><a href="/logout">LOGOUT</a></li>
+					<span class="logged-in-user">You are logged in as ({{ current_user.username }})</span>
+				{% else %}
+					<li><a href="/register">CREATE NEW USER</a></li>
+					<li><a href="/login">LOGIN</a></li>
+
+				{% endif %}
+			</ul>
+		</nav>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<div id="flash-message">
+				{% for message in messages %}
+					{{ message }}
+				{% endfor %}
+			</div>
+		{% endif %}
+		{% endwith %}
+		
+		<script src="{{ url_for('static', filename='animation.js') }}"></script>
+		
+		<div class="content">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</body>
+</html>

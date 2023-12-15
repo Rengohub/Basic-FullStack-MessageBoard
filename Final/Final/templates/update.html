@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if error_message %}
+        <div class="alert">
+            {{ error_message }}
+        </div>
+    {% endif %}
+
+    <form method="POST">
+        <p>Current Password:
+            <input type="password" name="current_password" id="current_password">
+            <br>
+        New Password:
+            <input type="password" name="new_password" id="new_password">
+            <br>
+        <button type="submit">UPDATE PASSWORD</button>
+        </p>
+    </form>
+{% endblock %}
