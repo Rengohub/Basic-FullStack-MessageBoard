@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if error_message %}
+		<div class="alert">
+			{{ error_message }}
+		</div>
+	{% endif %}
+	
+	<form method="POST">
+		<p>	Username:
+		<input type="text" name="username" id="username">
+		<br>
+		Password:
+		<input type="password" name="password" id="password">
+		<br>
+		Confirm
+		<input type="password" name="confirm" id="confirm">
+		<br>
+		<button type="submit">SUBMIT</button>
+		</p>
+	</form>
+{% endblock %}

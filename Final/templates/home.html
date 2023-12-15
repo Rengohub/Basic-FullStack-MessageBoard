@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% block content %}
+	<p>Welcome to my basic Message-Board App!</p>
+	{% if current_user.is_authenticated %}
+		{% for post in posts %}
+			<div>
+				<p>Author: {{ post.user.username }}</p>
+				<p>{{ post.content }}</p>
+				<p>Posted on: {{ post.timestamp.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+				
+				{% if post.user_id == current_user.id %}
+				
+				<a href="{{ url_for('editPost', post_id=post.id) }}">Edit</a>
+
+				<form action="{{ url_for('deletePost', post_id=post.id) }}" method="post">
+					<input type="submit" value="Delete">
+				</form>
+				{% endif %}
+			</div>
+{% endfor %}
+{% else %}
+	<p>You need to be logged in to see the posts.</p>
+{% endif %}
+{% endblock %}
