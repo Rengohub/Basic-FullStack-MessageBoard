@@ -15,7 +15,8 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
-    
+    posts = db.relationship('Post', backref='user')
+
 # Creates a post class that links to the user id to track the author as well as when it was posted to help with filtering.
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -91,7 +92,7 @@ def editPost(post_id):
         post.content = request.form['content']
         db.session.commit()
         return redirect('/')
-    return render_template('edit_post.html', post=post)
+    return render_template('editPost.html', post=post)
 
 # Delete Post route
 @app.route('/deletePost/<int:post_id>', methods=['POST'])

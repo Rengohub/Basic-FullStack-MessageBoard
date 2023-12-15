@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{{ url_for('editPost', post_id=post.id) }}" method="post">
+    <textarea name="content" required>{{ post.content }}</textarea>
+    <button type="submit">Update Post</button>
+</form>
+{% endblock %}
